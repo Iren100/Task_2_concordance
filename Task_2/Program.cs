@@ -27,7 +27,7 @@ namespace Task_2
                 print(2, "In interrogative sentences type without repeating words of a given length:");
                 foreach (var word in text.GetWordsFromInterrogativeSentences(WORDLENGTH))
                 {
-                    Console.WriteLine(word.Symbols);
+                    Console.WriteLine(word.Chars);
                 }
 
 
@@ -38,7 +38,7 @@ namespace Task_2
 
 
                 print(4, "In a certain sentence of the text, replace the words of a given length with the specified substring:");
-                text.ReplaceWordInSentence(0, 4, "строка, с различными элементами", parser.ParseSentence);
+                text.ReplaceWordInSentence(0, WORDLENGTH, "**Substring**", parser.ParseSentence);
                 Console.WriteLine(text.ToString());
 
 

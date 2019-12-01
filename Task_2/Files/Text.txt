@@ -9,3 +9,7 @@ In practical, While using a class and object of it, we get some extra useful met
 These methods reside under System.Object class which is automatically served by .NET for all the class that we define. If you will notice in the following image, the IntelliSense is showing some extra methods which are not defined in the Customer class.
 
 Following is the list of some important methods of System.Object class and their uses.
+
+Is everything clear on this topic?
+
+Any questions or suggestions?

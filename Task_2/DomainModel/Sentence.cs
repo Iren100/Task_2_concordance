@@ -23,7 +23,7 @@ namespace Task_2
             }
         }
 
-        public bool IsInterrogative => Items.Last().Chars == "?" || Items.Last().Chars == "?!" || Items.Last().Chars == "!?";
+        public bool IsInterrogative => Separators.EndPunctuationIsInterrogative.Contains(Items.Last().Chars);
 
         #region Operations
 
