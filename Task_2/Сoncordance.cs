@@ -7,7 +7,6 @@ namespace Task_2
         public const int LENGTH = 40;
         private const string DELIMITER = "..............................................................";
 
-        //заполнить 40 символами
         public static string printWord(string word)
         {
             word = String.Concat(word, DELIMITER);
