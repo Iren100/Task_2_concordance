@@ -1,0 +1,11 @@
+C# Object Class
+
+In C# System.Object class is the base class of all the classes defined in .NET. It does not matter that the class is a user defined class or a system defined class.
+
+Basically, when a user defined class created, the compiler automatically assumes it derives from System.Object class.
+
+In practical, While using a class and object of it, we get some extra useful methods, despite that, we have never defined them in our class.
+
+These methods reside under System.Object class which is automatically served by .NET for all the class that we define. If you will notice in the following image, the IntelliSense is showing some extra methods which are not defined in the Customer class.
+
+Following is the list of some important methods of System.Object class and their uses.
