@@ -18,29 +18,29 @@ namespace Task_2
             {
                 Text text = parser.Parse(streamReader);
 
-                //print(1, "All sentences in increasing order of words:");
-                //foreach (var sentence in text.Items.OrderBy(x => x.Items.Count))
-                //{
-                //    Console.WriteLine(sentence.ToString());
-                //}
+                print(1, "All sentences in increasing order of words:");
+                foreach (var sentence in text.Items.OrderBy(x => x.Items.Count))
+                {
+                    Console.WriteLine(sentence.ToString());
+                }
 
 
-                //print(2, "In interrogative sentences type without repeating words of a given length:");
-                //foreach (var word in text.GetWordsFromInterrogativeSentences(WORDLENGTH))
-                //{
-                //    Console.WriteLine(word.Chars);
-                //}
+                print(2, "In interrogative sentences type without repeating words of a given length:");
+                foreach (var word in text.GetWordsFromInterrogativeSentences(WORDLENGTH))
+                {
+                    Console.WriteLine(word.Chars);
+                }
 
 
-                //print(3, "Delete all words of a given length starting with a consonant from the text:");
-                //Text newText = text.Copy();
-                //newText.SentencesWithoutConsonants(WORDLENGTH);
-                //Console.WriteLine(newText.ToString());
+                print(3, "Delete all words of a given length starting with a consonant from the text:");
+                Text newText = text.Copy();
+                newText.SentencesWithoutConsonants(WORDLENGTH);
+                Console.WriteLine(newText.ToString());
 
 
-                //print(4, "In a certain sentence of the text, replace the words of a given length with the specified substring:");
-                //text.ReplaceWordInSentence(0, WORDLENGTH, "**Substring**", parser.ParseSentence);
-                //Console.WriteLine(text.ToString());
+                print(4, "In a certain sentence of the text, replace the words of a given length with the specified substring:");
+                text.ReplaceWordInSentence(0, WORDLENGTH, "**Substring**", parser.ParseSentence);
+                Console.WriteLine(text.ToString());
 
 
                 print(5, "Corcordance:");
