@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Configuration;
+using System.Collections.Generic;
 
 namespace Task_2
 {
@@ -17,35 +18,36 @@ namespace Task_2
             {
                 Text text = parser.Parse(streamReader);
 
-                print(1, "All sentences in increasing order of words:");
-                foreach (var sentence in text.Items.OrderBy(x => x.Items.Count))
-                {
-                    Console.WriteLine(sentence.ToString());
-                }
+                //print(1, "All sentences in increasing order of words:");
+                //foreach (var sentence in text.Items.OrderBy(x => x.Items.Count))
+                //{
+                //    Console.WriteLine(sentence.ToString());
+                //}
 
 
-                print(2, "In interrogative sentences type without repeating words of a given length:");
-                foreach (var word in text.GetWordsFromInterrogativeSentences(WORDLENGTH))
-                {
-                    Console.WriteLine(word.Chars);
-                }
+                //print(2, "In interrogative sentences type without repeating words of a given length:");
+                //foreach (var word in text.GetWordsFromInterrogativeSentences(WORDLENGTH))
+                //{
+                //    Console.WriteLine(word.Chars);
+                //}
 
 
-                print(3, "Delete all words of a given length starting with a consonant from the text:");
-                Text newText = text.Copy();
-                newText.SentencesWithoutConsonants(WORDLENGTH);
-                Console.WriteLine(newText.ToString());
+                //print(3, "Delete all words of a given length starting with a consonant from the text:");
+                //Text newText = text.Copy();
+                //newText.SentencesWithoutConsonants(WORDLENGTH);
+                //Console.WriteLine(newText.ToString());
 
 
-                print(4, "In a certain sentence of the text, replace the words of a given length with the specified substring:");
-                text.ReplaceWordInSentence(0, WORDLENGTH, "**Substring**", parser.ParseSentence);
-                Console.WriteLine(text.ToString());
+                //print(4, "In a certain sentence of the text, replace the words of a given length with the specified substring:");
+                //text.ReplaceWordInSentence(0, WORDLENGTH, "**Substring**", parser.ParseSentence);
+                //Console.WriteLine(text.ToString());
 
 
                 print(5, "Corcordance:");
-                var t1 = text.GetAllWords();
+                IEnumerable<IWord> t1 = text.GetAllWords().OrderBy(y => y.Chars).ToList();
                 var t2 = text.GetAllWordsQuantity();
-                var t3 = text.GetLineNumbers();
+                var t3 = //t1.GroupBy(x => x.Chars.ToLower()).Select(x => x.First().LineNumber = LineNumber).ToList();//
+                    text.GetLineNumbers();
                 int j = 0;
                 //write to file
                 string fileName = "out.txt";
@@ -54,16 +56,21 @@ namespace Task_2
                 {
                     for (var i = 'A'; i <= 'Z'; i++)
                     {
-                        j++;
                         Console.WriteLine(i);
-                        Console.Write(Сoncordance.printWord(t1.ElementAt(j).Chars));
-                        Console.Write(t2.ElementAt(j) + ":");
-                        Console.WriteLine(" " + t3.ElementAt(j));
-
-                        sw.WriteLine(i);
-                        sw.Write(Сoncordance.printWord(t1.ElementAt(j).Chars));
-                        sw.Write(t2.ElementAt(j) + ":");
-                        sw.WriteLine(" " + t3.ElementAt(j));
+                        for (var ii = j; ii < t1.Count();ii++)
+                        {
+                            if (i.ToString() == t1.ElementAt(ii).Chars.ToUpper().First().ToString())
+                            {
+                                Console.Write(Сoncordance.printWord(t1.ElementAt(ii).Chars));
+                                Console.Write(t2.ElementAt(ii) + ":");
+                                Console.WriteLine(" " + t3.ElementAt(ii));
+                                sw.WriteLine(i);
+                                sw.Write(Сoncordance.printWord(t1.ElementAt(ii).Chars));
+                                sw.Write(t2.ElementAt(ii) + ":");
+                                sw.WriteLine(" " + t3.ElementAt(ii));
+                                j = ii;
+                            }
+                        }
                     }
                 }
 

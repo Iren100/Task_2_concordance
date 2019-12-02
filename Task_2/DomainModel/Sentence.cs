@@ -44,7 +44,7 @@ namespace Task_2
 
         public IEnumerable<byte> GetLines()
         {
-            return Items.Where(x => x is IWord).Cast<IWord>().Select(x => x.LineNumber = LineNumber).ToList();
+            return Items.Where(x => x is IWord).Cast<IWord>().GroupBy(x => x.Chars.ToLower()).Select(x=>x.First().LineNumber=LineNumber);
         }
 
         public IEnumerable<ISentenceItem> ReplaceWord(Func<IWord, bool> predicate, IList<ISentenceItem> items)

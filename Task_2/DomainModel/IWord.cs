@@ -1,4 +1,5 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace Task_2
 {
     public interface IWord: ISentenceItem

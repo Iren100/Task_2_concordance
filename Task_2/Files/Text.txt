@@ -1,4 +1,4 @@
-C# Object Class
+C# Object Class.
 
 In C# System.Object class is the base class of all the classes defined in .NET. It does not matter that the class is a user defined class or a system defined class.
 

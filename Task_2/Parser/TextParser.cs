@@ -12,18 +12,18 @@ namespace Task_2
             var textResult = new Text();
             string line;
             string buffer = null;
-            byte lineNumber = 1;
+            byte lineNumber = 0;
+            int count = 0;
+            int prevCount = 10;
             while ((line = fileReader.ReadLine()) != null)
             {
                 lineNumber++;
                 if (Regex.Replace(line.Trim(), @"\s+", @" ") != "")
                 {
                     line = buffer + line;
-
                     var sentences = Separators.EnglishLettersRegex.Split(line)
                             .Select(x => Regex.Replace(x.Trim(), @"\s+", @" "))
                             .ToArray();
-
                     if (!Separators.EndPunctuation.Contains(sentences.Last().Last().ToString()))
                     {
                         buffer = sentences.Last();
@@ -31,22 +31,27 @@ namespace Task_2
                         {
                             textResult.Items.AddRange(sentences.Select(x => x).Where(x => x != sentences.Last()).Select(ParseSentence));
                         }
-                        if (textResult.Items.Count() != 0)
-                        {
-                            textResult.Items.Last().LineNumber = lineNumber;
-                        }
                     }
                     else
                     {
                         textResult.Items.AddRange(sentences.Select(ParseSentence));
-                        if (textResult.Items.Count() != 0)
-                        {
-                            textResult.Items.Last().LineNumber = lineNumber;
-                        }
+                     
                         buffer = null;
                     }
-                }               
-                }
+                    prevCount = count;
+                    count = count + sentences.Count();
+                    int i = prevCount;
+                    if (textResult.Items.Count() != 0)
+                    {
+                        do
+                        {
+                            textResult.Items[i].LineNumber = lineNumber;
+                            i++;
+                        }
+                        while (i < count - prevCount);
+                    }
+                }                  
+            }
             return textResult;
         }
 
