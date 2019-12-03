@@ -105,10 +105,6 @@ namespace Task_2
             return sb.ToString();
         }
 
-
-
-
-
         #endregion
     }
 }

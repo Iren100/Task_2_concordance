@@ -2,15 +2,13 @@
 
 namespace Task_2
 {
-    public interface IWord//: Symbol
+    public interface IWord
     {
         IEnumerable<Symbol> Symbols { get; }
 
         ICollection<int> LineNumber { get; set; }
 
         bool IsFirstСonsonant(string[] vowels);
-
-        //string ToString();
 
         string Chars { get; }
     }
