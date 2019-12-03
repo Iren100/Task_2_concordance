@@ -9,7 +9,7 @@ namespace Task_2
     {
         public List<ISentenceItem> Items { get; set; } = new List<ISentenceItem>();
 
-        public byte LineNumber { get; set; }
+        public int LineNumber { get; set; }
 
         public Sentence()
         {
@@ -23,7 +23,7 @@ namespace Task_2
             }
         }
 
-        public bool IsInterrogative => Separators.EndPunctuationIsInterrogative.Contains(Items.Last().Chars);
+        public TypeSentences typeSentence => Separators.EndPunctuationIsInterrogative.Contains(Items.Last().Chars)? TypeSentences.Interrogative : TypeSentences.Вeclarative;
 
         #region Operations
 
@@ -39,12 +39,22 @@ namespace Task_2
 
         public IEnumerable<IWord> GetWords(int length)
         {
-            return Items.Where(x => x is IWord).Cast<IWord>().Where(x => x.Length == length);
+            return Items.Where(x => x is IWord).Cast<IWord>().Where(x => x.Symbols?.Count() == length);
         }
 
-        public IEnumerable<byte> GetLines()
+        public IEnumerable<int> GetLines()
         {
-            return Items.Where(x => x is IWord).Cast<IWord>().GroupBy(x => x.Chars.ToLower()).Select(x=>x.First().LineNumber=LineNumber);
+            return Items.Where(x => x is IWord).Cast<IWord>().GroupBy(x => x.Chars.ToLower()).Select(x=>x.First().LineNumber = LineNumber);
+        }
+
+        public ISentence ReplaceWordInSentence(int length, IList<ISentenceItem> elements)
+        {
+            return new Sentence(ReplaceWord((x => x.Symbols?.Count() == length), elements));
+        }
+
+        public ISentence ReplaceWordInSentence(int length, string line, Func<string, ISentence> parseLine)
+        {
+            return new Sentence(ReplaceWord((x => x.Symbols?.Count() == length), parseLine(line).Items));
         }
 
         public IEnumerable<ISentenceItem> ReplaceWord(Func<IWord, bool> predicate, IList<ISentenceItem> items)

@@ -39,7 +39,7 @@ namespace Task_2
 
 
                 print(4, "In a certain sentence of the text, replace the words of a given length with the specified substring:");
-                text.ReplaceWordInSentence(0, WORDLENGTH, "**Substring**", parser.ParseSentence);
+                text.Items[0].ReplaceWordInSentence(WORDLENGTH, "**Substring**", parser.ParseSentence);
                 Console.WriteLine(text.ToString());
 
 
@@ -49,9 +49,9 @@ namespace Task_2
                 var t3 = //t1.GroupBy(x => x.Chars.ToLower()).Select(x => x.First().LineNumber = LineNumber).ToList();//
                     text.GetLineNumbers();
                 int j = 0;
+
                 //write to file
-                string fileName = "out.txt";
-                FileStream file = new FileStream(fileName, FileMode.OpenOrCreate);
+                FileStream file = new FileStream("out.txt", FileMode.OpenOrCreate);
                 using (StreamWriter sw = new StreamWriter(file))
                 {
                     for (var i = 'A'; i <= 'Z'; i++)

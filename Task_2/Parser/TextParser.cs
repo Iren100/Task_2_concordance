@@ -13,8 +13,8 @@ namespace Task_2
             string line;
             string buffer = null;
             byte lineNumber = 0;
-            int count = 0;
-            int prevCount = 10;
+            int sentenceNumber = 0;
+            int prevSentenceNumber = 10;
             while ((line = fileReader.ReadLine()) != null)
             {
                 lineNumber++;
@@ -38,9 +38,9 @@ namespace Task_2
                      
                         buffer = null;
                     }
-                    prevCount = count;
-                    count = count + sentences.Count();
-                    int i = prevCount;
+                    prevSentenceNumber = sentenceNumber;
+                    sentenceNumber = sentenceNumber + sentences.Count();
+                    int i = prevSentenceNumber;
                     if (textResult.Items.Count() != 0)
                     {
                         do
@@ -48,7 +48,7 @@ namespace Task_2
                             textResult.Items[i].LineNumber = lineNumber;
                             i++;
                         }
-                        while (i < count - prevCount);
+                        while (i < sentenceNumber - prevSentenceNumber);
                     }
                 }                  
             }

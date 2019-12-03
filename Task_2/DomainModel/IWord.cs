@@ -6,9 +6,7 @@ namespace Task_2
     {
         Symbol<char>[] Symbols { get; }
 
-        byte LineNumber { get; set; }
-
-        int Length { get; }
+        int LineNumber { get; set; }
 
         bool IsFirstСonsonant(string[] vowels);
     }

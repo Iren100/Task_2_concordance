@@ -5,9 +5,9 @@ namespace Task_2
 {
     public interface ISentence: BaseCollection<ISentenceItem>
     {
-        byte LineNumber { get; set; }
+        int LineNumber { get; set; }
 
-        bool IsInterrogative { get; }
+        TypeSentences typeSentence { get; }
 
         ISentence RemoveByWords(Func<IWord, bool> predicate);
 
@@ -17,6 +17,10 @@ namespace Task_2
 
         IEnumerable<IWord> GetWords(int length);
 
-        IEnumerable<byte> GetLines();
+        IEnumerable<int> GetLines();
+
+        ISentence ReplaceWordInSentence(int length, IList<ISentenceItem> elements);
+
+        ISentence ReplaceWordInSentence(int length, string line, Func<string, ISentence> parseLine);
     }
 }

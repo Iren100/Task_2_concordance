@@ -8,9 +8,7 @@ namespace Task_2
     {
         public Symbol<char>[] Symbols { get; }
 
-        public byte LineNumber { get; set; }
-
-        public int Length { get { return Symbols?.Count() ?? 0; } }
+        public int LineNumber { get; set; }
 
         public Word(string characters)
         {

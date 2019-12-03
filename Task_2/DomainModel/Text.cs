@@ -14,7 +14,7 @@ namespace Task_2
         public IEnumerable<IWord> GetWordsFromInterrogativeSentences(int length)
         {
             var result = new List<IWord>();
-            foreach (var sentence in Items.Where(sentence => sentence.IsInterrogative))
+            foreach (var sentence in Items.Where(sentence => sentence.typeSentence == TypeSentences.Interrogative))
             {
                 result.AddRange(sentence.GetWords(length));
             }
@@ -23,17 +23,7 @@ namespace Task_2
 
         public void SentencesWithoutConsonants(int length)
         {
-            Items = Items.Select(x => x.RemoveByWords(y => y.Length == length && y.IsFirstСonsonant(Separators.Consonant))).ToList();
-        }
-
-        public void ReplaceWordInSentence(int index, int length, IList<ISentenceItem> elements)
-        {
-            Items[index] = new Sentence(Items[index].ReplaceWord((x => x.Length == length), elements));
-        }
-
-        public void ReplaceWordInSentence(int index, int length, string line, Func<string, ISentence> parseLine)
-        {
-            Items[index] = new Sentence(Items[index].ReplaceWord((x => x.Length == length), parseLine(line).Items));
+            Items = Items.Select(x => x.RemoveByWords(y => y.Symbols?.Count() == length && y.IsFirstСonsonant(Separators.Consonant))).ToList();
         }
 
         public IEnumerable<IWord> GetAllWords()
@@ -56,9 +46,9 @@ namespace Task_2
             return result.GroupBy(x => x.Chars.ToLower()).Select(x => x.Count()).ToList();          
         }
 
-        public IEnumerable<byte> GetLineNumbers()
+        public IEnumerable<int> GetLineNumbers()
         {
-            var result = new List<byte>();
+            var result = new List<int>();
             foreach (var sentence in Items)
             {
                 result.AddRange(sentence.GetLines());

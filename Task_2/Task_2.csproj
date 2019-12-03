@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DomainModel\BaseCollection.cs" />
+    <Compile Include="DomainModel\TypeSentences.cs" />
     <Compile Include="Сoncordance.cs" />
     <Compile Include="DomainModel\ISentence.cs" />
     <Compile Include="DomainModel\ISentenceItem.cs" />
