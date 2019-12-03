@@ -7,7 +7,7 @@ namespace Task_2
 {
     public class Sentence : ISentence
     {
-        public List<ISentenceItem> Items { get; set; } = new List<ISentenceItem>();
+        public List<IWord> Items { get; set; } = new List<IWord>();
 
         public int LineNumber { get; set; }
 
@@ -15,9 +15,9 @@ namespace Task_2
         {
         }
 
-        public Sentence(IEnumerable<ISentenceItem> items)
+        public Sentence(IEnumerable<IWord> items)
         {
-            foreach (ISentenceItem item in items)
+            foreach (Word item in items)
             {
                 Items.Add(item);
             }
@@ -29,7 +29,7 @@ namespace Task_2
 
         public ISentence RemoveByWords(Func<IWord, bool> predicate)
         {
-            return new Sentence(Items.Where(x => !(x is IWord && predicate((IWord)x))));
+            return new Sentence(Items.Where(x => !(x is IWord && predicate(x))));
         }
 
         public IEnumerable<IWord> GetWords()
@@ -42,24 +42,14 @@ namespace Task_2
             return Items.Where(x => x is IWord).Cast<IWord>().Where(x => x.Symbols?.Count() == length);
         }
 
-        public IEnumerable<int> GetLines()
-        {
-            return Items.Where(x => x is IWord).Cast<IWord>().GroupBy(x => x.Chars.ToLower()).Select(x=>x.First().LineNumber = LineNumber);
-        }
-
-        public ISentence ReplaceWordInSentence(int length, IList<ISentenceItem> elements)
-        {
-            return new Sentence(ReplaceWord((x => x.Symbols?.Count() == length), elements));
-        }
-
         public ISentence ReplaceWordInSentence(int length, string line, Func<string, ISentence> parseLine)
         {
-            return new Sentence(ReplaceWord((x => x.Symbols?.Count() == length), parseLine(line).Items));
+            return new Sentence(ReplaceWord(x => x.Symbols?.Count() == length, parseLine(line).Items));
         }
 
-        public IEnumerable<ISentenceItem> ReplaceWord(Func<IWord, bool> predicate, IList<ISentenceItem> items)
+        private IEnumerable<IWord> ReplaceWord(Func<IWord, bool> predicate, IEnumerable<IWord> items)
         {
-            var newSentence = new List<ISentenceItem>();
+            var newSentence = new List<IWord>();
             foreach (var item in Items)
             {
                 if (item is IWord && predicate(item as IWord))
@@ -114,6 +104,10 @@ namespace Task_2
             ConcatWords(-1, sb);
             return sb.ToString();
         }
+
+
+
+
 
         #endregion
     }

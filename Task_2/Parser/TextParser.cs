@@ -46,6 +46,8 @@ namespace Task_2
                         do
                         {
                             textResult.Items[i].LineNumber = lineNumber;
+                            foreach (IWord word in textResult.Items[i].Items)
+                                word.LineNumber.Add(lineNumber);
                             i++;
                         }
                         while (i < sentenceNumber - prevSentenceNumber);
@@ -58,8 +60,7 @@ namespace Task_2
         public override ISentence ParseSentence(string sentence)
         {
             var result = new Sentence();
-            Func<string, ISentenceItem> toISentenceItem =
-                item => new Word(item);
+            Func<string, IWord> toSymbol = item => new Word(item);
 
             foreach (Match match in Separators.SentenceToWordsRegex.Matches(sentence))
             {
@@ -67,7 +68,7 @@ namespace Task_2
                 {
                     if (match.Groups[i].Value.Trim() != "")
                     {
-                        result.Items.Add(toISentenceItem(match.Groups[i].Value.Trim()));
+                        result.Items.Add(toSymbol(match.Groups[i].Value.Trim()));
                     }
                 }
             }

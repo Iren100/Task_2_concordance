@@ -33,6 +33,7 @@ namespace Task_2
             {
                 result.AddRange(sentence.GetWords());
             }
+
             return result.GroupBy(x => x.Chars.ToLower()).Select(x => x.First()).ToList();
         }
 
@@ -44,16 +45,6 @@ namespace Task_2
                 result.AddRange(sentence.GetWords());
             }
             return result.GroupBy(x => x.Chars.ToLower()).Select(x => x.Count()).ToList();          
-        }
-
-        public IEnumerable<int> GetLineNumbers()
-        {
-            var result = new List<int>();
-            foreach (var sentence in Items)
-            {
-                result.AddRange(sentence.GetLines());
-            }
-            return result;
         }
 
         public override string ToString()

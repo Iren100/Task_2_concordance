@@ -47,7 +47,6 @@
     <Compile Include="DomainModel\TypeSentences.cs" />
     <Compile Include="Сoncordance.cs" />
     <Compile Include="DomainModel\ISentence.cs" />
-    <Compile Include="DomainModel\ISentenceItem.cs" />
     <Compile Include="DomainModel\IWord.cs" />
     <Compile Include="Parser\Parser.cs" />
     <Compile Include="Program.cs" />

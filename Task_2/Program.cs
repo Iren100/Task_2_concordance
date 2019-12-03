@@ -39,15 +39,13 @@ namespace Task_2
 
 
                 print(4, "In a certain sentence of the text, replace the words of a given length with the specified substring:");
-                text.Items[0].ReplaceWordInSentence(WORDLENGTH, "**Substring**", parser.ParseSentence);
-                Console.WriteLine(text.ToString());
+                text.Items[0] = text.Items[0].ReplaceWordInSentence(5, "**Substring**", parser.ParseSentence);
+                Console.WriteLine(text.Items[0].ToString());
 
 
                 print(5, "Corcordance:");
                 IEnumerable<IWord> t1 = text.GetAllWords().OrderBy(y => y.Chars).ToList();
                 var t2 = text.GetAllWordsQuantity();
-                var t3 = //t1.GroupBy(x => x.Chars.ToLower()).Select(x => x.First().LineNumber = LineNumber).ToList();//
-                    text.GetLineNumbers();
                 int j = 0;
 
                 //write to file
@@ -63,11 +61,17 @@ namespace Task_2
                             {
                                 Console.Write(Сoncordance.printWord(t1.ElementAt(ii).Chars));
                                 Console.Write(t2.ElementAt(ii) + ":");
-                                Console.WriteLine(" " + t3.ElementAt(ii));
+                                if (t1.ElementAt(ii).LineNumber.Count > 0)
+                                    Console.WriteLine(" " + t1.ElementAt(ii).LineNumber?.First());
+                                else
+                                    Console.WriteLine();
                                 sw.WriteLine(i);
                                 sw.Write(Сoncordance.printWord(t1.ElementAt(ii).Chars));
                                 sw.Write(t2.ElementAt(ii) + ":");
-                                sw.WriteLine(" " + t3.ElementAt(ii));
+                                if (t1.ElementAt(ii).LineNumber.Count > 0)
+                                    sw.WriteLine(" " + t1.ElementAt(ii).LineNumber.First());
+                                else
+                                    Console.WriteLine();
                                 j = ii;
                             }
                         }

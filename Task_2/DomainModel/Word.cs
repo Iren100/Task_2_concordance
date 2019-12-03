@@ -6,13 +6,13 @@ namespace Task_2
 {
     public class Word : IWord
     {
-        public Symbol<char>[] Symbols { get; }
+        public IEnumerable<Symbol> Symbols { get; }
 
-        public int LineNumber { get; set; }
+        public ICollection<int> LineNumber { get; set; } = new List<int>();
 
         public Word(string characters)
         {
-            Symbols = characters?.Select(x => new Symbol<char>(x)).ToArray();
+            Symbols = characters?.Select(x => new Symbol(x.ToString())).ToList();
         }
 
         public string Chars
