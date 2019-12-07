@@ -28,9 +28,9 @@ namespace Task_2
             }
         }
 
-        public bool IsFirstСonsonant(string[] vowels)
+        public bool IsFirstСonsonant(string[] consonants)
         {
-            return vowels.Contains(Symbols.First().Characters.ToString());
+            return consonants.Contains(Symbols.First().Characters.ToString());
         }
     }
 }

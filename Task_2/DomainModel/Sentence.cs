@@ -29,17 +29,17 @@ namespace Task_2
 
         public ISentence RemoveByWords(Func<IWord, bool> predicate)
         {
-            return new Sentence(Items.Where(x => !(x is IWord && predicate(x))));
+            return new Sentence(Items.Where(x => !(predicate(x))));
         }
 
         public IEnumerable<IWord> GetWords()
         {
-            return Items.Where(x => x is IWord).Cast<IWord>();        
+            return Items;        
         }
 
         public IEnumerable<IWord> GetWords(int length)
         {
-            return Items.Where(x => x is IWord).Cast<IWord>().Where(x => x.Symbols?.Count() == length);
+            return Items.Where(x => x.Symbols?.Count() == length);
         }
 
         public ISentence ReplaceWordInSentence(int length, string line, Func<string, ISentence> parseLine)
